@@ -1,3 +1,4 @@
+import React from "react";
 import { TextField, InputLabel, TextFieldProps } from "@mui/material";
 // import { useController, UseControllerProps } from "react-hook-form";
 
@@ -12,7 +13,7 @@ type InputProps = {
 } & TextFieldProps;
 // & UseControllerProps<FormValues>;
 
-function Input(props: InputProps) {
+const Input = React.forwardRef((props: InputProps, ref) => {
   const { label, id, name, ...rest } = props;
   // const { field } = useController({ name, control });
 
@@ -21,9 +22,9 @@ function Input(props: InputProps) {
       <InputLabel shrink htmlFor={id}>
         {label}
       </InputLabel>
-      <TextField id={id} size="small" {...rest} />
+      <TextField id={id} inputRef={ref} size="small" {...rest} />
     </>
   );
-}
+});
 
 export default Input;

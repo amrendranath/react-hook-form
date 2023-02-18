@@ -1,13 +1,13 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import App from "./App";
+import ControllerForm from "./ControllerForm";
 
 const mockLogin = jest.fn((email, password) => {
   return Promise.resolve({ email, password });
 });
 
-describe("App", () => {
+describe("ControllerForm", () => {
   it("should display required error when value is invalid", async () => {
-    render(<App login={mockLogin} />);
+    render(<ControllerForm login={mockLogin} />);
     fireEvent.submit(screen.getByRole("button"));
     expect(await screen.findByText("Email is required")).toBeVisible();
     expect(await screen.findByText("Password is required")).toBeVisible();
@@ -15,7 +15,7 @@ describe("App", () => {
   });
 
   it("should display matching error when email is invalid", async () => {
-    render(<App login={mockLogin} />);
+    render(<ControllerForm login={mockLogin} />);
     fireEvent.input(screen.getByRole("textbox", { name: /email/i }), {
       target: {
         value: "test",
@@ -44,7 +44,7 @@ describe("App", () => {
   });
 
   it("should display min length error when password is invalid", async () => {
-    render(<App login={mockLogin} />);
+    render(<ControllerForm login={mockLogin} />);
     fireEvent.input(screen.getByRole("textbox", { name: /email/i }), {
       target: {
         value: "test@mail.com",

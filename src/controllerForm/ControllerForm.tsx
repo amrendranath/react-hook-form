@@ -1,9 +1,9 @@
-import "./index.css";
+import "../index.css";
 import { useForm, Controller } from "react-hook-form";
 import { Button } from "@mui/material";
-import Input from "./components/Input";
+import Input from "../components/Input";
 
-type AppProps = {
+type ControllerFormProps = {
   login: (email: string, password: string) => Promise<unknown>;
 };
 
@@ -12,7 +12,7 @@ type FormValues = {
   password: string;
 };
 
-export default function App({ login }: AppProps) {
+export default function ControllerForm({ login }: ControllerFormProps) {
   const {
     control,
     handleSubmit,

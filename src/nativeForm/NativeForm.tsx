@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Button } from "@mui/material";
 import "../index.css";
 
 type NativeFormProps = {
@@ -17,7 +18,7 @@ export default function NativeForm({ login }: NativeFormProps) {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
+  } = useForm<FormValues>({
     defaultValues: {
       email: "",
       password: "",
@@ -66,7 +67,7 @@ export default function NativeForm({ login }: NativeFormProps) {
         />
         {errors.password && <span role="alert">{errors.password.message}</span>}
       </section>
-      <button type="submit">SUBMIT</button>
+      <Button type="submit">SUBMIT</Button>
     </form>
   );
 }
