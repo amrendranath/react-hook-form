@@ -1,20 +1,20 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import App from "./App";
+import NativeForm from "./nativeForm";
 
 const mockLogin = jest.fn((email, password) => {
   return Promise.resolve({ email, password });
 });
 
-describe("App", () => {
+describe("NativeForm", () => {
   it("should display required error when value is invalid", async () => {
-    render(<App login={mockLogin} />);
+    render(<NativeForm login={mockLogin} />);
     fireEvent.submit(screen.getByRole("button"));
     expect(await screen.findAllByRole("alert")).toHaveLength(2);
     expect(mockLogin).not.toBeCalled();
   });
 
   it("should display matching error when email is invalid", async () => {
-    render(<App login={mockLogin} />);
+    render(<NativeForm login={mockLogin} />);
     fireEvent.input(screen.getByRole("textbox", { name: /email/i }), {
       target: {
         value: "test",
@@ -41,7 +41,7 @@ describe("App", () => {
   });
 
   it("should display min length error when password is invalid", async () => {
-    render(<App login={mockLogin} />);
+    render(<NativeForm login={mockLogin} />);
     fireEvent.input(screen.getByRole("textbox", { name: /email/i }), {
       target: {
         value: "test@mail.com",

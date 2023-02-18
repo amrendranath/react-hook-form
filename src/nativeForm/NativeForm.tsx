@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import "./index.css";
+import "../index.css";
 
-type AppProps = {
+type NativeFormProps = {
   login: (email: string, password: string) => Promise<unknown>;
 };
 
@@ -11,7 +11,7 @@ type FormValues = {
   password: string;
 };
 
-export default function App({ login }: AppProps) {
+export default function NativeForm({ login }: NativeFormProps) {
   const {
     register,
     handleSubmit,
