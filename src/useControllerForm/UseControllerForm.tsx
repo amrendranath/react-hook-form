@@ -1,7 +1,7 @@
 import "../index.css";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Button } from "@mui/material";
-import Input from "../components/Input";
+import RHFInput from "../components/RHFInput";
 
 type UseControllerFormProps = {
   login: (email: string, password: string) => Promise<unknown>;
@@ -13,12 +13,7 @@ type FormValues = {
 };
 
 export default function UseControllerForm({ login }: UseControllerFormProps) {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<FormValues>({
+  const { control, handleSubmit, reset } = useForm<FormValues>({
     defaultValues: {
       email: "",
       password: "",
@@ -30,23 +25,14 @@ export default function UseControllerForm({ login }: UseControllerFormProps) {
     reset();
   };
 
-  // console.log(errors);
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Login</h1>
-      <Controller
+      <RHFInput
         name="email"
         control={control}
-        render={({ field }) => (
-          <Input
-            {...field}
-            id="email"
-            label="Email"
-            error={!!errors?.email}
-            helperText={errors?.email?.message}
-          />
-        )}
+        id="email"
+        label="Email"
         rules={{
           required: "Email is required",
           pattern: {
@@ -55,19 +41,11 @@ export default function UseControllerForm({ login }: UseControllerFormProps) {
           },
         }}
       />
-      <Controller
+      <RHFInput
         name="password"
         control={control}
-        render={({ field }) => (
-          <Input
-            {...field}
-            id="password"
-            label="Password"
-            type="password"
-            error={!!errors?.password}
-            helperText={errors?.password?.message}
-          />
-        )}
+        id="password"
+        label="Password"
         rules={{
           required: "Password is required",
           minLength: {
