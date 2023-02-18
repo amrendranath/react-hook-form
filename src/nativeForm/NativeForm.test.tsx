@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import NativeForm from "./nativeForm";
+import NativeForm from "./NativeForm";
 
 const mockLogin = jest.fn((email, password) => {
   return Promise.resolve({ email, password });
