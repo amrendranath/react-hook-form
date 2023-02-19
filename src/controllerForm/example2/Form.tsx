@@ -1,7 +1,7 @@
 import { Controller, Control, FieldErrors } from "react-hook-form";
 import Input from "../../components/Input";
 
-type FormValues = {
+export type FormValues = {
   email: string;
   password: string;
 };
